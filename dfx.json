@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "canisters": {
+    "wings_publishers_backend": {
+      "type": "rust",
+      "package": "wings_publishers_backend",
+      "candid": "src/wings_publishers_backend/wings_publishers_backend.did"
+    }
+  },
+  "output_env_file": ".env"
+}

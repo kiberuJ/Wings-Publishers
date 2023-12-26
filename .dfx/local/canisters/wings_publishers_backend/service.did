@@ -1,0 +1,42 @@
+type Article = record {
+  id : nat64;
+  title : text;
+  updated_at : opt nat64;
+  content : text;
+  reviewer_id : opt nat64;
+  writer_id : nat64;
+  created_at : nat64;
+  state : text;
+};
+type ArticlePayload = record {
+  title : text;
+  content : text;
+  writer_id : nat64;
+};
+type Error = variant {
+  NotFound : record { msg : text };
+  Exists : record { msg : text };
+  ServerError : record { msg : text };
+};
+type Result = variant { Ok : Article; Err : Error };
+type Result_1 = variant { Ok : User; Err : Error };
+type Result_2 = variant { Ok : text; Err : Error };
+type User = record {
+  id : nat64;
+  updated_at : opt nat64;
+  name : text;
+  role : text;
+  created_at : nat64;
+};
+type UserPayload = record { name : text; role : text };
+service : {
+  add_article : (ArticlePayload) -> (Result);
+  add_user : (UserPayload) -> (Result_1);
+  approve : (nat64, nat64) -> (Result);
+  delete_user : (nat64) -> (Result_1);
+  get_article : (nat64) -> (Result) query;
+  get_article_summary : (nat64) -> (Result_2) query;
+  get_user : (nat64) -> (Result_1) query;
+  request_review : (nat64, nat64) -> (Result);
+  update_user : (nat64, UserPayload) -> (Result_1);
+}
