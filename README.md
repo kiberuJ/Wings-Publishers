@@ -1,85 +1,61 @@
-# icp_rust_message_board_contract
+# Wings Publishers
 
-### Requirements
-* rustc 1.64 or higher
-```bash
-$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-$ source "$HOME/.cargo/env"
-```
-* rust wasm32-unknown-unknown target
-```bash
-$ rustup target add wasm32-unknown-unknown
-```
-* candid-extractor
-```bash
-$ cargo install candid-extractor
-```
-* install `dfx`
-```bash
-$ DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
-$ echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"
-$ source ~/.bashrc
-$ dfx start --background
-```
+Wings publishers is a canister that defines endpoints responsible for handling request to write, request review, approve, and publish articles on the IC protocol.
 
-If you want to start working on your project right away, you might want to try the following commands:
+The canister can be tested locally as defined in the instructions below.
 
-```bash
-$ cd icp_rust_boilerplate/
-$ dfx help
-$ dfx canister --help
+## :package: Built With
+
+    - rust
+    - dfx
+    - Ic protocol
+
+## :computer: Getting Started
+
+    To get a local copy up and running follow these simple steps.
+
+## :arrow_heading_down: Install
+
+1. Clone the repository to your local machine
+
+```sh
+$ git clone git@github.com:kiberuJ/Wings-Publishers.git
 ```
 
-## Update dependencies
+2. cd into the directory
 
-update the `dependencies` block in `/src/{canister_name}/Cargo.toml`:
-```
-[dependencies]
-candid = "0.9.9"
-ic-cdk = "0.11.1"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1.0"
-ic-stable-structures = { git = "https://github.com/lwshang/stable-structures.git", branch = "lwshang/update_cdk"}
+```sh
+$ cd Wings-Publishers
 ```
 
-## did autogenerate
+3. Initialize the local Internet Computer
 
-Add this script to the root directory of the project:
-```
-https://github.com/buildwithjuno/juno/blob/main/scripts/did.sh
-```
-
-Update line 16 with the name of your canister:
-```
-https://github.com/buildwithjuno/juno/blob/main/scripts/did.sh#L16
+```sh
+dfx start --background
 ```
 
-After this run this script to generate Candid.
-Important note!
+4. Register, build, and deploy canister on the local Internet Computer
 
-You should run this script each time you modify/add/remove exported functions of the canister.
-Otherwise, you'll have to modify the candid file manually.
-
-Also, you can add package json with this content:
-```
-{
-    "scripts": {
-        "generate": "./did.sh && dfx generate",
-        "gen-deploy": "./did.sh && dfx generate && dfx deploy -y"
-      }
-}
+```sh
+npm run gen-deploy
 ```
 
-and use commands `npm run generate` to generate candid or `npm run gen-deploy` to generate candid and to deploy a canister.
+## :arrow_forward: Usage
 
-## Running the project locally
+After successful deployement on the local Internet Computer, one can be able to interact with the canister using the terminal by invoking `dfx call canisterName methodName(params)` commands or through the provided candid interface.
 
-If you want to test your project locally, you can use the following commands:
+## :busts_in_silhouette: Authors
 
-```bash
-# Starts the replica, running in the background
-$ dfx start --background
+👤 **Jane Kiberu**
 
-# Deploys your canisters to the replica and generates your candid interface
-$ dfx deploy
-```
+- Github: [@KiberuJ](https://github.com/kiberuJ)
+
+## 🤝 Contributing
+
+    Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues).
+
+## :star2: Show your support
+
+    Give a ⭐️ if you like this project!
